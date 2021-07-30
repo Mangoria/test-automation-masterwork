@@ -65,6 +65,9 @@ public class DataInput{
     assertThat(commentText.getText()).isEqualTo(input);
 
 
+    /* Osszes comment megszamol tomb meret +1 id vel ellenorzini.*/
+
+
 
 
 
