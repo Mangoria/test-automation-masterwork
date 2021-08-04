@@ -1,3 +1,5 @@
+package old;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
@@ -10,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class RegistrationOk {
+public class PrivacyStatement {
 
   private WebDriver driver;
   String mainSite = "http://test-automation-blog.greenfox.academy/";
@@ -39,6 +41,8 @@ public class RegistrationOk {
     driver.manage().window().maximize();
 
     driver.findElement(By.xpath("//*[@id=\"menu-item-45\"]/a")).click();
+    driver.findElement(By.xpath("//*[@id=\"content\"]/article/div/div/div/form/div[1]/div/div[8]/a")).click();
+    driver.navigate().back();
     WebElement login = driver.findElement(By.xpath("//*[@id=\"user_login-46\"]"));
     login.sendKeys("Seleniumalma");
     WebElement firstName = driver.findElement(By.xpath("//*[@id=\"first_name-46\"]"));

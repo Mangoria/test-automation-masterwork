@@ -1,8 +1,10 @@
+package old;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class DataListing {
+public class Pagination {
 
   private WebDriver driver;
   String mainSite = "http://test-automation-blog.greenfox.academy/";
@@ -28,7 +30,7 @@ public class DataListing {
   @BeforeEach
   void setup() {
     driver = new ChromeDriver();
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @AfterEach
@@ -37,19 +39,27 @@ public class DataListing {
   }
 
   @Test
-  void dataListing() {
+  void pagination() {
     driver.get(mainSite);
     driver.manage().window().maximize();
-    List<WebElement> elementName = driver.findElements(By.xpath("//*[contains(@rel,'bookmark')]"));
-    WebElement compareValue = driver.findElement(By.xpath("//*[@id=\"post-10\"]/div/header/h2/a"));
-    for (WebElement webElement : elementName) {
-      System.out.println(webElement.getText());
+    String title = driver.getTitle();
+    int number;
+    if (title.contains("Page")){
+      number = Integer.parseInt(title.replaceAll("\\D+",""));
+    } else {
+      number = 1;
     }
-
-    assertThat(elementName.get(9).getText()).isEqualTo(compareValue.getText());
-
-
-
+    System.out.println(number);
+    int number2;
+    driver.findElement(By.xpath("//*[@id=\"content\"]/div[2]/div[2]/a")).click();
+    title = driver.getTitle();
+    if (title.contains("Page")){
+      number2 = Integer.parseInt(title.replaceAll("\\D+",""));
+    } else {
+      number2 = 1;
+    }
+    System.out.println(number2);
+    assertThat(number).isLessThan(number2);
   }
 
 }

@@ -1,3 +1,7 @@
+package old;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginOk {
+public class LoginFail {
 
 
   private WebDriver driver;
@@ -40,11 +44,15 @@ public class LoginOk {
 
     driver.findElement(By.xpath("//*[@id=\"menu-item-44\"]/a")).click();
     WebElement login = driver.findElement(By.xpath("//*[@id=\"user_login\"]"));
-    login.sendKeys("Seleniumalma");
+    login.sendKeys("Seleniumalmas");
     WebElement password = driver.findElement(By.xpath("//*[@id=\"user_pass\"]"));
     password.sendKeys("123456Alma");
     driver.findElement(
         By.xpath("//*[@id=\"wp-submit\"]")).click();
+    String expected = "Unknown username. Check again or try your email address.";
+    WebElement error = driver.findElement(By.xpath("//*[@id=\"login_error\"]"));
+    String actual = error.getText();
+    assertThat(expected).isEqualTo(actual);
 
 
 
