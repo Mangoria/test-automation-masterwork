@@ -4,7 +4,6 @@ package masterwork.tests;
 import java.util.concurrent.TimeUnit;
 import masterwork.blogSitePages.BlogLoginSite;
 import masterwork.blogSitePages.BlogMainSite;
-import masterwork.blogSitePages.BlogRegistrationSite;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,31 +15,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static org.assertj.core.api.Assertions.*;
 
-public class Login {
-
-  WebDriver driver;
-  String mainSite = "http://test-automation-blog.greenfox.academy/";
+public class Login extends BaseTest {
 
   BlogMainSite objBlogMainSite;
   BlogLoginSite objBlogLoginSite;
-
-  @BeforeAll
-  public static void setupDriver() {
-    WebDriverManager.chromedriver().setup();
-  }
-
-  @BeforeEach
-  void setup() {
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.get(mainSite);
-  }
-
-  @AfterEach
-  void tearDown() {
-    driver.quit();
-  }
 
   @Test
   @DisplayName("Successful login test")

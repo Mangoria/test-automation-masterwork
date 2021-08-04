@@ -1,41 +1,15 @@
 package masterwork.tests;
 
-
-import java.util.concurrent.TimeUnit;
 import masterwork.blogSitePages.BlogMainSite;
 import masterwork.blogSitePages.BlogRegistrationSite;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.chrome.ChromeDriver;
 import static org.assertj.core.api.Assertions.*;
 
-public class Registration {
-  WebDriver driver;
-  String mainSite = "http://test-automation-blog.greenfox.academy/";
+public class Registration extends BaseTest {
 
   BlogMainSite objBlogMainSite;
   BlogRegistrationSite objBlogRegistrationSite;
-
-  @BeforeAll
-  public static void setupDriver() {
-    WebDriverManager.chromedriver().setup();
-  }
-
-  @BeforeEach
-  void setup(){
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.get(mainSite);
-  }
-
-  @AfterEach
-  void tearDown() { driver.quit(); }
 
   @Test
   @DisplayName("Successful Registration Test")

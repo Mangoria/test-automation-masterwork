@@ -2,7 +2,6 @@ package old;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;

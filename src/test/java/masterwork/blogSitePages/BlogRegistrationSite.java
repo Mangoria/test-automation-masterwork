@@ -53,6 +53,10 @@ public class BlogRegistrationSite {
     driver.findElement(privacyButton).click();
   }
 
+  public void checkPrivacyStatement(){
+    driver.findElement(privacyStatementLink).click();
+  }
+
   public void clickOnRegister (){
     driver.findElement(registerButton).click();
   }

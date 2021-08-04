@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import masterwork.blogSitePages.BlogLoginSite;
 import masterwork.blogSitePages.BlogMainSite;
 import masterwork.blogSitePages.BlogRegistrationSite;
-import org.jsoup.Connection.Base;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,24 +16,19 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static org.assertj.core.api.Assertions.*;
 
-public class PrivacyStatement extends BaseTest {
+public class DataListing extends BaseTest{
 
   BlogMainSite objBlogMainSite;
-  BlogRegistrationSite objBlogRegistrationSite;
 
   @Test
   @DisplayName("Opening PS test")
-  public void checkPrivacyStatement(){
+  public void dataListing(){
     objBlogMainSite = new BlogMainSite(driver);
-    objBlogRegistrationSite = new BlogRegistrationSite(driver);
-    objBlogMainSite.clickOnRegister();
-    objBlogRegistrationSite.checkPrivacyStatement();
-    assertThat(driver.getTitle()).isEqualTo("Google");
-    driver.navigate().back();
-    objBlogRegistrationSite.clickOnPrivacyButton();
-    assertThat(driver.findElement(By.className("active"))).isNotNull();
-
+    objBlogMainSite.commentTitleList();
+    for (int i = 0; i < objBlogMainSite.commentTitleList().size(); i++) {
+      System.out.println(objBlogMainSite.commentTitle(i));
+      assertThat(objBlogMainSite.commentTitleList().get(i).getText()).
+          isEqualTo(objBlogMainSite.commentTitle(i));
+    }
   }
-
-
 }
