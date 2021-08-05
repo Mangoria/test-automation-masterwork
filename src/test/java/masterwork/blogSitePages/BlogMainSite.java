@@ -12,6 +12,7 @@ public class BlogMainSite {
   By login = By.xpath("//*[@id=\"menu-item-44\"]/a");
   By register = By.xpath("//*[@id=\"menu-item-45\"]/a");
   By account = By.xpath("//*[@id=\"menu-item-85\"]/a");
+  By logout = By.xpath("//*[@id=\"menu-item-72\"]/a");
   By nextPageButton = By.className("older-posts");
 
 
@@ -30,6 +31,8 @@ public class BlogMainSite {
   }
 
   public void clickOnAccount(){ driver.findElement(account).click();}
+
+  public void clickOnLogOut(){ driver.findElement(logout).click();}
 
   public void openBlogPost (String blogPostTitle) {
     driver.findElement(By.xpath("//*[contains(@title,'" + blogPostTitle + "')]")).click();
