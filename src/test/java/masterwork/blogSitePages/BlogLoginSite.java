@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 public class BlogLoginSite {
 
   WebDriver driver;
-  By userNameField = By.name("log");
-  By passwordField = By.name("pwd");
+  By userNameField = By.id("user_login");
+  By passwordField = By.id("user_pass");
   By loginButton = By.id("wp-submit");
 
 
@@ -26,5 +26,7 @@ public class BlogLoginSite {
   public void clickOnLogin (){
     driver.findElement(loginButton).click();
   }
+
+
 
 }

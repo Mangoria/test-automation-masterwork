@@ -23,11 +23,6 @@ public class BlogRegistrationSite {
     this.driver = driver;
   }
 
-  public void infoCheck() {
-    String title11 = driver.findElement(By.xpath("//*[@id=\"post-38\"]/div/header/h2/a")).getText();
-    System.out.println(title11);
-  }
-
   public void fillTheUserName(String userName){
     driver.findElement(userNameField).sendKeys(userName);
   }
