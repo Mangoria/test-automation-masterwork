@@ -14,14 +14,16 @@ public class Login extends BaseTest {
 
   @Test
   @DisplayName("Successful login test")
-  public void successfulLogin(){
+  public void successfulLogin() throws InterruptedException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogLoginSite = new BlogLoginSite(driver);
     objBlogMainSite.clickOnLogin();
+    Thread.sleep(200);
     objBlogLoginSite.fillTheUserName("TestAlma");
+    Thread.sleep(200);
     objBlogLoginSite.fillThePassword("123456Alma");
     objBlogLoginSite.clickOnLogin();
-    assertThat(driver.findElement(By.xpath("//*[@id=\"menu-item-72\"]/a"))).isNotNull();
+    assertThat(driver.findElement(By.xpath("//*[@id=\"menu-item-72\"]/a")).isDisplayed()).isTrue();
   }
 
   @Test
@@ -33,7 +35,7 @@ public class Login extends BaseTest {
     objBlogLoginSite.fillTheUserName("TestAlma");
     objBlogLoginSite.fillThePassword("123456alma");
     objBlogLoginSite.clickOnLogin();
-    assertThat(driver.findElement(By.id("login_error"))).isNotNull();
+    assertThat(driver.findElement(By.id("login_error")).getText()).contains("Error");
 
   }
 }

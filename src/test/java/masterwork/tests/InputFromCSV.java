@@ -4,7 +4,6 @@ package masterwork.tests;
 import masterwork.blogSitePages.BlogCommentSite;
 import masterwork.blogSitePages.BlogMainSite;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -17,7 +16,7 @@ public class InputFromCSV extends BaseTest{
 
 
   @ParameterizedTest
-  @DisplayName("Input Single Data")
+  @DisplayName("Input One Line of Data from CSV")
   @CsvFileSource(resources = "./../../simple.csv",numLinesToSkip = 1)
   public void Input(String comment, String name, String email, String website)
       throws InterruptedException {

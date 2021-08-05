@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
   @BeforeEach
   public void setup(){
     driver = new ChromeDriver();
-    wait = new WebDriverWait(driver,3);
+    wait = new WebDriverWait(driver,5);
     driver.manage().window().maximize();
     driver.get(mainSite);
   }
@@ -35,6 +35,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
   public void tearDown(){
     driver.quit();
   }
+
+
 
 
 }

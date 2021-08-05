@@ -1,5 +1,8 @@
 package masterwork.tests;
 
+import java.util.Locale;
+import masterwork.blogSitePages.BlogAccountSite;
+import masterwork.blogSitePages.BlogLoginSite;
 import masterwork.blogSitePages.BlogMainSite;
 import masterwork.blogSitePages.BlogRegistrationSite;
 import org.junit.jupiter.api.DisplayName;
@@ -9,37 +12,68 @@ import static org.assertj.core.api.Assertions.*;
 public class Registration extends BaseTest {
 
   BlogMainSite objBlogMainSite;
+  BlogAccountSite objBlogAccountSite;
+  BlogLoginSite objBlogLoginSite;
   BlogRegistrationSite objBlogRegistrationSite;
 
   @Test
   @DisplayName("Successful Registration Test")
   public void registrationSuccessfully() {
-      objBlogMainSite = new BlogMainSite(driver);
-      objBlogMainSite.clickOnRegister();
-      objBlogRegistrationSite = new BlogRegistrationSite(driver);
-      objBlogRegistrationSite.fillTheUserName("TestAlma");
-      objBlogRegistrationSite.fillTheFirstName("Jakab");
-      objBlogRegistrationSite.fillTheLastName("Gipsz");
-      objBlogRegistrationSite.fillTheEmail("test.gipszjakab@test.com");
-      objBlogRegistrationSite.fillThePassword("123456Alma");
-      objBlogRegistrationSite.clickOnPrivacyButton();
-      objBlogRegistrationSite.clickOnRegister();
-      assertThat(driver.getTitle().toLowerCase().contains("testalma"));
+    objBlogMainSite = new BlogMainSite(driver);
+    objBlogAccountSite = new BlogAccountSite(driver);
+    objBlogRegistrationSite = new BlogRegistrationSite(driver);
+    objBlogLoginSite = new BlogLoginSite(driver);
+
+    String userName = "ToBeDeleted";
+    String passWord = "123456Alma";
+    String firstName = "Janos";
+    String lastName = "Benedek";
+    String email = "jbtest@hali.hu";
+
+    objBlogMainSite.clickOnRegister();
+
+    objBlogRegistrationSite.fillTheUserName(userName);
+    objBlogRegistrationSite.fillTheFirstName(firstName);
+    objBlogRegistrationSite.fillTheLastName(lastName);
+    objBlogRegistrationSite.fillThePassword(passWord);
+    objBlogRegistrationSite.fillTheEmail(email);
+    objBlogRegistrationSite.clickOnPrivacyButton();
+    objBlogRegistrationSite.clickOnRegister();
+    assertThat(driver.getCurrentUrl().contains(userName.toLowerCase())).isTrue();
+
+    driver.navigate().to(mainSite);
+
+    objBlogMainSite.clickOnAccount();
+    assertThat(objBlogAccountSite.getFirstName()).isEqualTo(firstName);
+    objBlogAccountSite.startDelete();
+    objBlogAccountSite.fillThePassWord(passWord);
+    objBlogAccountSite.finalDelete();
+
   }
 
   @Test
   @DisplayName("Failed Registration Test")
   public void registrationToFail() {
     objBlogMainSite = new BlogMainSite(driver);
-    objBlogMainSite.clickOnRegister();
+    objBlogAccountSite = new BlogAccountSite(driver);
     objBlogRegistrationSite = new BlogRegistrationSite(driver);
-    objBlogRegistrationSite.fillTheUserName("TestAlma");
-    objBlogRegistrationSite.fillTheFirstName("Jakab");
-    objBlogRegistrationSite.fillTheLastName("Gipsz");
-    objBlogRegistrationSite.fillTheEmail("test.gipszjakab@test.com");
-    objBlogRegistrationSite.fillThePassword("123456Alma");
+    objBlogLoginSite = new BlogLoginSite(driver);
+
+    String userName = "ToBeDeleted";
+    String passWord = "123456Alma";
+    String firstName = "Janos";
+    String lastName = "Benedek";
+    String email = "jbtest@hali.hu";
+
+    objBlogMainSite.clickOnRegister();
+    objBlogRegistrationSite.fillTheUserName(userName);
+    objBlogRegistrationSite.fillTheFirstName(firstName);
+    objBlogRegistrationSite.fillTheLastName(lastName);
+    objBlogRegistrationSite.fillThePassword(passWord);
+    objBlogRegistrationSite.fillTheEmail(email);
     objBlogRegistrationSite.clickOnRegister();
     assertThat(objBlogRegistrationSite.missedPrivacyButton()).isEqualTo("Pivacy statement is required.");
+
   }
 
 }

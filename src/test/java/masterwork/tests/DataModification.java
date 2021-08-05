@@ -18,7 +18,7 @@ public class DataModification extends BaseTest{
 
   @Test
   @DisplayName("Changing on parameter")
-  public void updateDetail(){
+  public void updateDetail() throws InterruptedException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogLoginSite = new BlogLoginSite(driver);
     objBlogAccountSite = new BlogAccountSite(driver);
@@ -29,6 +29,7 @@ public class DataModification extends BaseTest{
     String passWord = "123456Alma";
     objBlogLoginSite.fillThePassword(passWord);
     objBlogLoginSite.clickOnLogin();
+    Thread.sleep(500);
     wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"menu-item-85\"]/a"))));
     objBlogMainSite.clickOnAccount();
     String originalFirstName = objBlogAccountSite.getFirstName();

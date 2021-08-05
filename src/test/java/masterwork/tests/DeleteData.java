@@ -7,7 +7,6 @@ import masterwork.blogSitePages.BlogRegistrationSite;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -56,7 +55,7 @@ public class DeleteData extends BaseTest{
     objBlogLoginSite.fillThePassword(passWord);
     objBlogLoginSite.clickOnLogin();
 
-    assertThat(driver.findElement(By.id("login_error")).getText()).contains("Unknown username");
+    assertThat(driver.findElement(By.id("login_error")).getText()).contains("Unknown");
 
   }
 }
