@@ -1,4 +1,4 @@
-0,comment,name,email,website
-1,12egyszer volt hol nem volt13,selenium,kdteszt@kd.com,alma.kd.hu
-2,12volt egyszer egy13,selenium,kdteszt@kd.com,alma.kd.hu
-3,12commentecske13,selenium,kdteszt@kd.com,alma.kd.hu
+Comment1,name,email,website
+Comment2,testername1,kdteszt1@kd.com,alma3.kd.hu
+Comment3,testername2,kdteszt2@kd.com,alma5.kd.hu
+Comment4,testername3,kdteszt3@kd.com,alma7.kd.hu
