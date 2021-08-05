@@ -28,6 +28,10 @@ public class BlogMainSite {
     driver.findElement(login).click();
   }
 
+  public void openBlogPost (String blogPostTitle) {
+    driver.findElement(By.xpath("//*[contains(@title,'" + blogPostTitle + "')]")).click();
+  }
+
   public List<WebElement> commentTitleList(){
     return driver.findElements(By.xpath("//*[contains(@rel,'bookmark')]"));
   }
@@ -37,20 +41,16 @@ public class BlogMainSite {
   }
 
   public boolean checkIfLastPage(){
-    if(driver.findElement(By.className("older-posts")).isDisplayed()){
-      System.out.println("Nem");
-    return false;}
-    else
-    {
-      System.out.println("Igen");
-      return true; }
+    return !driver.findElement(By.className("older-posts")).isDisplayed();
   }
 
   public void clickNextPage() {
     if (driver.findElement(nextPageButton).isDisplayed()) {
-      System.out.println("Latom");
       driver.findElement(nextPageButton).click();
     }
+  }
+  public String getTitleOfCurrentSite(){
+    return driver.getTitle();
   }
 
 

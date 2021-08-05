@@ -1,12 +1,11 @@
 package masterwork.tests;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import masterwork.blogSitePages.BlogMainSite;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
+import static org.assertj.core.api.Assertions.*;
 
 public class Pagination extends BaseTest{
 
@@ -14,23 +13,21 @@ public class Pagination extends BaseTest{
 
   @Test
   @DisplayName("Listing more than one page of data")
-  public void extraDataListing(){
+  public void extraDataListing() {
     objBlogMainSite = new BlogMainSite(driver);
+    String pageOneTitle = objBlogMainSite.getTitleOfCurrentSite();
     List<WebElement> baseList = objBlogMainSite.commentTitleList();
+    for (WebElement webElement : baseList) {
+      System.out.println(webElement.getText());
+    }
     while (!objBlogMainSite.checkIfLastPage()) {
       objBlogMainSite.clickNextPage();
-      System.out.println("Clicked");
-      for (int i = 0; i < baseList.size(); i++) {
-        System.out.println(baseList.get(i).getText());
+      baseList = objBlogMainSite.commentTitleList();
+      for (WebElement webElement : baseList) {
+        System.out.println(webElement.getText());
       }
-      baseList = Stream.concat(baseList.stream(),
-          objBlogMainSite.commentTitleList().stream()).collect(Collectors.toList());
+      String currentPageTitle = objBlogMainSite.getTitleOfCurrentSite();
+      assertThat(pageOneTitle).isNotEqualTo(currentPageTitle);
     }
-    System.out.println("Kiugrottam");
-    for (int i = 1; i < baseList.size(); i++) {
-      System.out.println(baseList.get(i).getText());
-    }
-
   }
-
 }
