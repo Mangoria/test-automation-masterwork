@@ -18,7 +18,7 @@ public class Registration extends BaseTest {
 
   @Test
   @DisplayName("Successful Registration Test")
-  public void registrationSuccessfully() {
+  public void registrationSuccessfully() throws InterruptedException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogAccountSite = new BlogAccountSite(driver);
     objBlogRegistrationSite = new BlogRegistrationSite(driver);
@@ -39,6 +39,7 @@ public class Registration extends BaseTest {
     objBlogRegistrationSite.fillTheEmail(email);
     objBlogRegistrationSite.clickOnPrivacyButton();
     objBlogRegistrationSite.clickOnRegister();
+    Thread.sleep(400);
     assertThat(driver.getCurrentUrl().contains(userName.toLowerCase())).isTrue();
 
     driver.navigate().to(mainSite);

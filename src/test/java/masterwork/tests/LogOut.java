@@ -18,8 +18,8 @@ public class LogOut extends BaseTest{
   BlogLogOutSite objBlogLogOutSite;
 
   @Test
-  @DisplayName("Delete Value")
-  public void updateDetail() {
+  @DisplayName("Creating an account and the logging out.")
+  public void updateDetail() throws InterruptedException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogAccountSite = new BlogAccountSite(driver);
     objBlogRegistrationSite = new BlogRegistrationSite(driver);
@@ -45,6 +45,7 @@ public class LogOut extends BaseTest{
     driver.navigate().to(mainSite);
 
     objBlogMainSite.clickOnAccount();
+    Thread.sleep(400);
     assertThat(objBlogAccountSite.getFirstName()).isEqualTo(firstName);
 
     driver.navigate().to(mainSite);
@@ -60,6 +61,7 @@ public class LogOut extends BaseTest{
 
     objBlogMainSite.clickOnLogin();
 
+    Thread.sleep(400);
     objBlogLoginSite.fillTheUserName(userName);
     objBlogLoginSite.fillThePassword(passWord);
     objBlogLoginSite.clickOnLogin();
@@ -67,6 +69,7 @@ public class LogOut extends BaseTest{
     driver.navigate().to(mainSite);
 
     objBlogMainSite.clickOnAccount();
+    Thread.sleep(400);
     assertThat(objBlogAccountSite.getFirstName()).isEqualTo(firstName);
     objBlogAccountSite.startDelete();
     objBlogAccountSite.fillThePassWord(passWord);
