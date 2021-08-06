@@ -14,7 +14,7 @@ public class ExternalSave extends BaseTest{
   BlogMainSite objBlogMainSite;
 
   @Test
-  @DisplayName("Opening PS test")
+  @DisplayName("Saving All Blog Post Titles into a file")
   public void dataListing() throws IOException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogMainSite.commentTitleList();

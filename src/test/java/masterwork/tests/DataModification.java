@@ -17,7 +17,7 @@ public class DataModification extends BaseTest{
   BlogLoginSite objBlogLoginSite;
 
   @Test
-  @DisplayName("Changing on parameter")
+  @DisplayName("Changing one parameter")
   public void updateDetail() throws InterruptedException {
     objBlogMainSite = new BlogMainSite(driver);
     objBlogLoginSite = new BlogLoginSite(driver);

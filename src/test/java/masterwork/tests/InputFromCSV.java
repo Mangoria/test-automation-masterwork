@@ -16,7 +16,7 @@ public class InputFromCSV extends BaseTest{
 
 
   @ParameterizedTest
-  @DisplayName("Input One Line of Data from CSV")
+  @DisplayName("Input One Line of Data from CSV at a time")
   @CsvFileSource(resources = "./../../simple.csv",numLinesToSkip = 1)
   public void Input(String comment, String name, String email, String website)
       throws InterruptedException {

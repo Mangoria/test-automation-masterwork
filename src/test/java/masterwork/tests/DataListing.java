@@ -10,7 +10,7 @@ public class DataListing extends BaseTest{
   BlogMainSite objBlogMainSite;
 
   @Test
-  @DisplayName("Opening PS test")
+  @DisplayName("Listing Blog Post Titles")
   public void dataListing(){
     objBlogMainSite = new BlogMainSite(driver);
     objBlogMainSite.commentTitleList();
